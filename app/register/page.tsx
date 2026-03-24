@@ -26,7 +26,7 @@ type RegisterFormData = {
   acceptTerms: boolean;
 };
 
-const schema = yup.object({
+const schema: yup.ObjectSchema<RegisterFormData> = yup.object({
   name: yup
     .string()
     .required("Name is required")
@@ -52,6 +52,7 @@ const schema = yup.object({
     .matches(/^01[0125][0-9]{8}$/, "Enter a valid Egyptian phone number"),
   acceptTerms: yup
     .boolean()
+    .required("You must agree to the terms")
     .oneOf([true], "You must agree to the terms"),
 });
 
